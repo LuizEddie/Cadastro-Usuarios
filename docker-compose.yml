@@ -1,0 +1,23 @@
+services:
+  frontend:
+    build: 
+      dockerfile: ./frontend/Dockerfile
+    stdin_open: true
+    tty: true
+    ports:
+     - 3000:3000
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    command: npm start
+  backend:
+    build:
+      dockerfile: ./backend/Dockerfile
+    stdin_open: true
+    tty: true
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app
+    command: npm start
